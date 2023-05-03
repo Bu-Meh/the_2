@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewpoint" content="width=device-width,initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="login.css" />
+
+    <link rel="shortcut icon" href="#" />
+  
+    <title>Login Page - Acheson Athletics</title>
+</head>
+<body>
+        <!--Header-->
+    <header>
+        <div id="content"> </div>
+    </header>
+    <!--END-Header-->
+        <div id="modal-signup" class="hero">
+
+            <div class="form-box">
+                <form id="signup">
+                    <div id="reg" class="input-group">
+                        <input type="email" id="email" name= "email" class="input-field" autocomplete="username" placeholder="Email" required>
+                        <input type="password" id="password" name="password" class="input-field" autocomplete="current-password" placeholder="Enter Password" required>
+
+                        <button type="submit" id="signUp" class="submit-btn" >Register</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    <!--Footer-->
+  <!--END-Footer-->
+</body>
+
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+  import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyANwJD3hPmAFHeIKZ0NQWbvOpzbWgh6ytc",
+    authDomain: "the2-9d18b.firebaseapp.com",
+    databaseURL: "https://the2-9d18b-default-rtdb.firebaseio.com",
+    projectId: "the2-9d18b",
+    storageBucket: "the2-9d18b.appspot.com",
+    messagingSenderId: "923197879401",
+    appId: "1:923197879401:web:c0c71e852187ef545ddef8",
+    measurementId: "G-VFKYK5F2FD"
+  };
+
+// Initialize Firebase
+const app = !getApps().length ? initializeApp( firebaseConfig ) : getApp();
+// make auth and database references
+const auth = getAuth (app);
+const database = getDatabase(app);
+
+signUp.addEventListener('click', (e) => {
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((email) => {
+        // Signed in 
+        const user = email.user;
+
+        alert('user created!');
+        // ...
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    alert(errorMessage);
+    // ..
+    });
+
+});
+
+export { auth, database };
+
+</script>
+</html>
